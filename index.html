@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Web Socket</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+        $(() => {
+            const socket = io.connect('http://localhost:3000');
+
+            socket.on('merhaba', (data) =>{
+                $('#merhaba').html('Merhaba' + data.country);
+            });
+            
+            $('button').on('click', () => {
+                socket.emit('Selam', {name: 'Murat', surname: 'Özer'})
+            });
+
+        });
+        
+    </script>
+</head>
+<body>
+<button id="button" >Selam Ver</button>
+<div id="merhaba"></div>
+
+</body>
+
+
+
+</html>
